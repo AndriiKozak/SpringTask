@@ -20,6 +20,7 @@ public class ExceptionControllerAdvice {
 
     @ExceptionHandler(MalformedCsvException.class)
     public String malformedCsv(MalformedCsvException e) throws IOException {
+        logger.error(e);
         MultipartFile file = e.getFlie();
         fileService.saveCopy(ERROR_DESTINATION, file);
         messageSender.sendMessage(file);
