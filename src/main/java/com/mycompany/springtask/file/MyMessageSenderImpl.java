@@ -18,10 +18,8 @@ public class MyMessageSenderImpl implements MyMessageSender {
 
     @Override
     public void sendMessage(final MultipartFile file) {
-        jmsTemplate.send(new MessageCreator() {
-
-            @Override
-            public Message createMessage(Session session) throws JMSException {
+        jmsTemplate.send(
+                (Session session) ->{
                 BytesMessage msg = session.createBytesMessage();
                 try {
                     msg.writeBytes(file.getBytes());
@@ -29,7 +27,6 @@ public class MyMessageSenderImpl implements MyMessageSender {
                     Logger.getLogger(MyMessageSender.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 return msg;
-            }
-        });
+            });
     }
 }

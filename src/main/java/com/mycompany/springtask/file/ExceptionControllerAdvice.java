@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ControllerAdvice
 public class ExceptionControllerAdvice {
 
-    static final private String ERROR_DESTINATION = "/erorrs/";
+    private static final String ERROR_DESTINATION = "/erorrs/";
     @Autowired
     MyMessageSender messageSender;
     @Autowired

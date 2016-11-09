@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class FileController {
 
-    static final private String FILE_DESTINATION = "/files/";
+    private static final String FILE_DESTINATION = "/files/";
     @Autowired
     private FileService fileService;
 

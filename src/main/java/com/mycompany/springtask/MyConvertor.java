@@ -10,7 +10,6 @@ public class MyConvertor implements Converter<String, MyEntity> {
 
     @Override
     public MyEntity convert(String id) {
-        System.out.println("convertor " + id);
         if (id.isEmpty()) {
             return null;
         } else {

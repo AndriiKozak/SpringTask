@@ -20,7 +20,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public int processCsvFile(BufferedReader reader) {
-        return reader.lines().mapToInt(line -> processCsvLine(line)).sum();
+        return reader.lines().mapToInt(this::processCsvLine).sum();
     }
 
     @Override

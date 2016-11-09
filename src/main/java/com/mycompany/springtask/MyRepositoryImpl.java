@@ -47,7 +47,7 @@ public class MyRepositoryImpl implements MyRepository {
         return 0 != jdbcTemplate.update("delete from My_Entity where id=?", entity.getId().toString());
     }
 
-    static private class EntityMapper implements RowMapper<MyEntity> {
+    private static class EntityMapper implements RowMapper<MyEntity> {
 
         @Override
         public MyEntity mapRow(ResultSet rs, int i) throws SQLException {

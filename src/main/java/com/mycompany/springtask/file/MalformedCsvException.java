@@ -4,14 +4,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MalformedCsvException extends RuntimeException {
 
-    private MultipartFile flie;
+    private transient MultipartFile flie;
 
     /**
      * Creates a new instance of <code>MalformedCsvException</code> without
      * detail message.
      */
-    public MalformedCsvException() {
-    }
+
 
     /**
      * Constructs an instance of <code>MalformedCsvException</code> with the
