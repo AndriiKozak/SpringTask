@@ -18,6 +18,9 @@ public class MalformedCsvException extends RuntimeException {
      *
      * @param msg the detail message.
      */
+    public MalformedCsvException() {
+    }
+    
     public MalformedCsvException(String msg) {
         super(msg);
     }
