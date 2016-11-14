@@ -2,6 +2,9 @@ package com.mycompany.springtask;
 
 import java.util.Objects;
 import java.util.UUID;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 public class MyEntity {
 
@@ -20,16 +23,12 @@ public class MyEntity {
 
     @Override
     public String toString() {
-        return "MyEntity{" + "id=" + id + ", key=" + key + ", value=" + value + '}';
+        return ReflectionToStringBuilder.toString(this);
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        hash = 17 * hash + Objects.hashCode(this.key);
-        hash = 17 * hash + Objects.hashCode(this.value);
-        return hash;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     @Override
