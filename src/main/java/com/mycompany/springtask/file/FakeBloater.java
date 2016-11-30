@@ -5,7 +5,7 @@ import javax.jms.MessageListener;
 import org.apache.log4j.Logger;
 
 public class FakeBloater implements MessageListener {
-    private static final Logger logger = Logger.getLogger(FakeBloater.class);
+    protected Logger logger = Logger.getLogger(FakeBloater.class);
     @Override
     public void onMessage(Message m) {
         logger.info(m);

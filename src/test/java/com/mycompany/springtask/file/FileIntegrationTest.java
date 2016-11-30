@@ -1,7 +1,7 @@
-package com.mycompany.springtask;
+package com.mycompany.springtask.file;
 
-import com.mycompany.springtask.file.FileController;
-import com.mycompany.springtask.file.MalformedCsvException;
+import com.mycompany.springtask.MyEntity;
+import com.mycompany.springtask.MyRepository;
 import java.util.Optional;
 import java.util.Random;
 import static junit.framework.Assert.assertFalse;
@@ -28,7 +28,7 @@ public class FileIntegrationTest {
     private FileController controller;
     @Autowired
     private MyRepository repository;
-    Model model;
+    private Model model;
     private String content;
     private final String key = "Test entity";
     private Integer value;
@@ -43,17 +43,21 @@ public class FileIntegrationTest {
 
     @Test
     public void uploadFileTest() throws Exception {
-        assertFalse(repository.findAll().stream().anyMatch((e) -> key.equals(e.getKey()) && value.equals(e.getValue())));
+        assertFalse(isTestEntityPresent());
         MultipartFile file = new MockMultipartFile("test.csv", content.getBytes());
         controller.upploadFile(file, model);
-        assertTrue(repository.findAll().stream().anyMatch((e) -> {
+        assertTrue(isTestEntityPresent());
+    }
+    
+    private boolean isTestEntityPresent(){
+        return repository.findAll().stream().anyMatch((e) -> {
             if (key.equals(e.getKey()) && value.equals(e.getValue())) {
                 addedEntity = Optional.of(e);
                 return true;
             } else {
                 return false;
             }
-        }));
+        });
     }
 
     @Test(expected = MalformedCsvException.class)
@@ -66,5 +70,10 @@ public class FileIntegrationTest {
     @After
     public void tearDown(){
         addedEntity.ifPresent((e)->repository.delete(e));
+    }
+    
+    @Test
+    public void uploadTarFileTest() throws Exception {
+        
     }
 }

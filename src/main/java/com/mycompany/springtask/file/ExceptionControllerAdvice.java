@@ -14,12 +14,13 @@ public class ExceptionControllerAdvice {
     private static final Logger logger = Logger.getLogger(ExceptionControllerAdvice.class);
     private static final String ERROR_DESTINATION = "/erorrs/";
     @Autowired
-    MyMessageSender messageSender;
+    private MyMessageSender messageSender;
     @Autowired
-    FileService fileService;
+    protected FileService fileService;
 
     @ExceptionHandler(MalformedCsvException.class)
     public String malformedCsv(MalformedCsvException e) throws IOException {
+        System.out.println("yo!");
         logger.error(e);
         MultipartFile file = e.getFlie();
         fileService.saveCopy(ERROR_DESTINATION, file);
